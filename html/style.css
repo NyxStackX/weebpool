@@ -1240,7 +1240,7 @@ section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 10rem 8%;
+    padding: 11rem 8%;
     background: var(--bg-color);
     position: relative;
 }
