@@ -1254,7 +1254,7 @@ section {
 .about-wrapper {
     display: grid;
     grid-template-columns: 45% 55%;
-    gap: 6rem;
+    gap: 5rem;
     align-items: center;
 }
 
@@ -1311,7 +1311,7 @@ section {
 
 /* Content Side */
 .about-details {
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .section-tag {
@@ -1321,7 +1321,7 @@ section {
     text-transform: uppercase;
     letter-spacing: 4px;
     color: var(--main-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--main-color);
 }
@@ -1331,7 +1331,7 @@ section {
     font-weight: 700;
     color: var(--text-color);
     line-height: 1.1;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     letter-spacing: -1px;
 }
 
@@ -1348,7 +1348,7 @@ section {
     font-size: 1.7rem;
     line-height: 1.8;
     color: var(--text-secondary);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .highlight-text {
@@ -1360,7 +1360,7 @@ section {
     width: 60px;
     height: 3px;
     background: var(--gradient);
-    margin: 3rem 0;
+    margin: 2rem 0;
     border-radius: 2px;
 }
 
@@ -1368,7 +1368,7 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .info-box {
