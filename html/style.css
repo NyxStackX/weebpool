@@ -18,6 +18,60 @@
     --highlight: #ffb347;
     --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --card-bg: rgba(10, 10, 10, 0.9);
+    --border-color: rgba(255, 77, 166, 0.2);
+    --header-bg: rgba(10, 10, 10, 0.8);
+    --text-muted: rgba(245, 245, 245, 0.7);
+    --input-border: rgba(255, 77, 166, 0.3);
+}
+
+/* Light Mode Variables */
+:root.light-mode {
+    --bg-color: #f8f9fa;
+    --second-bg-color: #e9ecef;
+    --text-color: #212529;
+    --main-color: #ff4da6;
+    --accent-color: #007bff;
+    --highlight: #ff6b35;
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --border-color: rgba(255, 77, 166, 0.2);
+    --header-bg: rgba(248, 249, 250, 0.95);
+    --text-muted: rgba(108, 117, 125, 0.8);
+    --input-border: rgba(102, 126, 234, 0.3);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    font-size: 2.4rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 77, 166, 0.1);
+    transform: scale(1.1);
+}
+
+.theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+/* Smooth transitions for theme changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 html {
@@ -26,7 +80,7 @@ html {
 }
 
 body {
-    background: linear-gradient(-45deg, #0a0a0a, #161616, #1a1a2e, #16213e);
+    background: linear-gradient(-45deg, var(--bg-color), var(--second-bg-color), var(--second-bg-color), var(--bg-color));
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     color: var(--text-color);
@@ -81,13 +135,13 @@ body::before {
     top: 0;
     left: 0;
     padding: 2rem 10%;
-    background: rgba(10, 10, 10, 0.8);
+    background: var(--header-bg);
     backdrop-filter: blur(20px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border-color);
     box-shadow: var(--shadow);
 }
 
@@ -302,7 +356,7 @@ section {
 
 .stat-label {
     font-size: 1.4rem;
-    color: rgba(245, 245, 245, 0.7);
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 0.5rem;
@@ -1190,9 +1244,9 @@ section {
 }
 
 .service-magazine-card {
-    background: rgba(10, 10, 10, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 77, 166, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 4rem;
     transition: all 0.4s ease;
@@ -1289,9 +1343,9 @@ section {
 }
 
 .project-magazine-card {
-    background: rgba(10, 10, 10, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 77, 166, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
     transition: all 0.4s ease;
@@ -1324,11 +1378,11 @@ section {
     position: absolute;
     top: 2rem;
     right: 2rem;
-    background: rgba(10, 10, 10, 0.8);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    border: 1px solid rgba(255, 77, 166, 0.3);
+    border: 1px solid var(--border-color);
 }
 
 .project-category {
@@ -1480,9 +1534,9 @@ section {
 }
 
 .contact-form {
-    background: rgba(10, 10, 10, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 77, 166, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 4rem;
 }
@@ -2107,14 +2161,14 @@ section {
 
 .competency-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
 }
 
 .competency-card {
-    background: rgba(10, 10, 10, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 77, 166, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 3rem;
     transition: all 0.4s ease;
@@ -2234,9 +2288,9 @@ section {
 .self-assessment {
     margin-top: 8rem;
     padding: 4rem;
-    background: rgba(10, 10, 10, 0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 77, 166, 0.2);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
 }
 
@@ -2251,10 +2305,22 @@ section {
     background-clip: text;
 }
 
+/* Centered title for self-assessment */
+.centered-title {
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
 .assessment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+}
+
+/* 4 columns for self-assessment */
+.assessment-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .assessment-item {
@@ -2342,10 +2408,17 @@ section {
 }
 
 /* RESPONSIVE COMPETENCIES */
+@media (max-width: 1400px) {
+    .competency-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
     .competency-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
+
 
     .block-header {
         flex-direction: column;
@@ -2397,8 +2470,8 @@ section {
         font-size: 1.4rem;
     }
 
-    .assessment-grid {
-        grid-template-columns: 1fr;
+    .assessment-grid, .assessment-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .self-assessment {
@@ -2519,5 +2592,54 @@ section {
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+/* LIGHT MODE OVERRIDES - Fix hardcoded color */
+
+:root.light-mode {
+    /* Override hardcoded white colors */
+}
+
+:root.light-mode .magazine-description,
+:root.light-mode .text-quote,
+:root.light-mode .text-description,
+:root.light-mode .service-description,
+:root.light-mode .project-description,
+:root.light-mode .competency-description,
+:root.light-mode .competencies-intro p,
+:root.light-mode .contact-intro p,
+:root.light-mode .form-header p,
+:root.light-mode .cv-download-section p,
+:root.light-mode .footer-brand p,
+:root.light-mode .footer-links a,
+:root.light-mode .footer-quote,
+:root.light-mode .copyright,
+:root.light-mode .footer-link,
+:root.light-mode .contact-text p,
+:root.light-mode .image-caption,
+:root.light-mode .stat-label,
+:root.light-mode .highlight-label,
+:root.light-mode .project-tech span,
+:root.light-mode .competency-evidence,
+:root.light-mode .assessment-item li {
+    color: var(--text-muted);
+}
+
+:root.light-mode .floating-card,
+:root.light-mode .social-link,
+:root.light-mode .project-overlay,
+:root.light-mode .floating-card {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+:root.light-mode .navbar {
+    background: var(--header-bg);
+}
+
+@media (max-width: 600px) {
+    :root.light-mode .navbar {
+        background: var(--card-bg);
     }
 }
