@@ -89,4 +89,80 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Page Transition Functionality
+    initPageTransitions();
 });
+
+// Page Transition System
+function initPageTransitions() {
+    // Create transition overlay if it doesn't exist
+    let transitionOverlay = document.querySelector('.page-transition');
+    if (!transitionOverlay) {
+        transitionOverlay = document.createElement('div');
+        transitionOverlay.className = 'page-transition';
+        document.body.appendChild(transitionOverlay);
+    }
+
+    // Add page-content class to main content for entrance animation
+    const mainContent = document.querySelector('section') || document.querySelector('main');
+    if (mainContent && !mainContent.classList.contains('page-content')) {
+        mainContent.classList.add('page-content');
+    }
+
+    // Handle internal link clicks for transition
+    const internalLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([href^="http"]):not([href^="mailto"]):not([href^="tel"])');
+    
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if it's the current page
+            if (href === window.location.pathname.split('/').pop() || 
+                (href === 'index.html' && window.location.pathname.endsWith('/'))) {
+                return;
+            }
+
+            e.preventDefault();
+            
+            // Start transition
+            document.body.classList.add('transitioning');
+            transitionOverlay.classList.add('slide-up');
+            
+            // Navigate after animation
+            setTimeout(() => {
+                window.location.href = href;
+            }, 600);
+        });
+    });
+
+    // Handle page entrance animation
+    window.addEventListener('pageshow', function(e) {
+        // Remove transitioning class
+        document.body.classList.remove('transitioning');
+        
+        // If coming from cache (back button), remove animation classes
+        if (e.persisted) {
+            transitionOverlay.classList.remove('slide-up', 'slide-down', 'active');
+            return;
+        }
+
+        // Play entrance animation
+        if (transitionOverlay.classList.contains('slide-up')) {
+            transitionOverlay.classList.remove('slide-up');
+            transitionOverlay.classList.add('slide-down');
+            
+            setTimeout(() => {
+                transitionOverlay.classList.remove('slide-down', 'active');
+            }, 600);
+        }
+    });
+
+    // Handle initial page load
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        transitionOverlay.classList.add('slide-down');
+        setTimeout(() => {
+            transitionOverlay.classList.remove('slide-down', 'active');
+        }, 600);
+    }
+}
