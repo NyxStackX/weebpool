@@ -2184,6 +2184,23 @@ section {
     color: rgba(245, 245, 245, 0.8);
 }
 
+/* COMPETENCIES SECTION */
+.competencies {
+    background: var(--bg-color);
+}
+
+.competencies-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 6rem;
+}
+
+.competencies-intro p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: rgba(245, 245, 245, 0.8);
+}
+
 .competency-block {
     margin-bottom: 8rem;
 }
