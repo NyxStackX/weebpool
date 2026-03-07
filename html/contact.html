@@ -47,68 +47,89 @@
         </h2>
         <div class="magazine-divider"></div>
 
-        <div class="contact-intro">
-            <p>Vous souhaitez échanger avec moi ? N’hésitez pas à me contacter.</p>
-        </div>
-
-        <div class="contact-grid">
+        <div class="contact-magazine-grid">
             <div class="contact-info">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="bx bx-envelope"></i>
+                <div class="contact-intro">
+                    <h3>Vous avez un projet ?</h3>
+                    <p>N'hésitez pas à me contacter pour discuter de vos idées ou simplement échanger.</p>
+                </div>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>alebapaulina89@gmail.com</p>
+                        </div>
                     </div>
-                    <div class="contact-text">
-                        <h4>Email</h4>
-                        <p>alebapaulina89@gmail.com</p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bx bx-map"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Localisation</h4>
+                            <p>Paris, France</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="bx bx-briefcase"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Statut</h4>
+                            <p>Étudiante Epitech B1</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-card">
+                <div class="contact-item">
                     <div class="contact-icon">
-                        <i class="bx bx-map"></i>
+                        <i class="bx bx-phone"></i>
                     </div>
                     <div class="contact-text">
-                        <h4>Localisation</h4>
-                        <p>Paris, France</p>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="bx bx-briefcase"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>Statut</h4>
-                        <p>Étudiante</p>
+                        <h4>Téléphone</h4>
+                        <p>Sur demande</p>
                     </div>
                 </div>
             </div>
 
-            <div class="contact-form-wrapper">
+            <div class="contact-form">
                 <div class="form-header">
-                    <h3>Envoyez-moi un message</h3>
-                    <p>Remplissez le formulaire ci-dessous et je vous répondrai dès que possible.</p>
+                    <h3>Envoyez un message</h3>
+                    <p>Je vous répondrai dans les plus brefs délais.</p>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/xjgabzjv" method="POST">
+                
+                <form action="https://formspree.io/f/xjgabzjv" method="POST">
                     <div class="form-group">
                         <div class="input-wrapper">
-                            <input type="text" id="name" name="name" required placeholder="Votre nom">
-                            <span class="input-line"></span>
+                            <input type="text" name="name" placeholder="Votre nom" required>
+                            <div class="input-line"></div>
                         </div>
                         <div class="input-wrapper">
-                            <input type="email" id="email" name="email" required placeholder="votre@email.com">
-                            <span class="input-line"></span>
-                        </div>
-                        <div class="input-wrapper full-width">
-                            <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message">
-                            <span class="input-line"></span>
-                        </div>
-                        <div class="input-wrapper full-width">
-                            <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
-                            <span class="input-line"></span>
+                            <input type="email" name="email" placeholder="Votre email" required>
+                            <div class="input-line"></div>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">
+                    
+                    <div class="form-group full-width">
+                        <div class="input-wrapper">
+                            <input type="text" name="subject" placeholder="Sujet" required>
+                            <div class="input-line"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <div class="input-wrapper">
+                            <textarea name="message" placeholder="Votre message..." rows="5" required></textarea>
+                            <div class="input-line"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="magazine-btn full-width">
                         <i class="bx bx-send"></i>
                         Envoyer le message
                     </button>
@@ -117,6 +138,7 @@
         </div>
     </div>
 </section>
+
 
 <footer class="footer magazine-footer">
     <div class="footer-content">
