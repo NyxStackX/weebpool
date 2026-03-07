@@ -948,7 +948,7 @@ section {
     .magazine-hero {
         grid-template-columns: 1fr;
         gap: 3rem;
-        text-align: center;
+        texto-align: center;
     }
 
     .magazine-title {
@@ -1894,103 +1894,121 @@ section {
 /* CONTACT MAGAZINE STYLE */
 .contact-magazine-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
     align-items: start;
 }
 
 .contact-info {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
 }
 
 .contact-intro h3 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     color: var(--text-color);
+    line-height: 1.2;
 }
 
 .contact-intro p {
-    font-size: 1.6rem;
-    line-height: 1.6;
-    color: rgba(245, 245, 245, 0.8);
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
 }
 
 .contact-details {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.8rem;
+    padding: 1.2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--main-color);
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(232, 180, 184, 0.15);
 }
 
 .contact-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--main-color), var(--accent-color));
-    border-radius: 50%;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
     flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(232, 180, 184, 0.3);
 }
 
 .contact-text h4 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     color: var(--text-color);
 }
 
 .contact-text p {
-    font-size: 1.4rem;
-    color: rgba(245, 245, 245, 0.7);
-}
-
-.contact-cta {
-    text-align: center;
-}
-
-.contact-cta p {
-    font-size: 1.4rem;
-    color: rgba(245, 245, 245, 0.7);
-    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    color: var(--text-secondary);
 }
 
 .contact-form {
     background: var(--card-bg);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 4rem;
+    border-radius: 24px;
+    padding: 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
+}
+
+.form-header {
+    margin-bottom: 2.5rem;
 }
 
 .form-header h3 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     color: var(--text-color);
 }
 
 .form-header p {
     font-size: 1.4rem;
-    color: rgba(245, 245, 245, 0.7);
-    margin-bottom: 3rem;
+    color: var(--text-secondary);
 }
 
 .form-group {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .input-wrapper {
@@ -2000,14 +2018,15 @@ section {
 .input-wrapper input,
 .input-wrapper textarea {
     width: 100%;
-    padding: 1.5rem 0;
-    font-size: 1.6rem;
+    padding: 1.4rem 1.2rem;
+    font-size: 1.5rem;
     color: var(--text-color);
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid rgba(232, 180, 184, 0.3);
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
     outline: none;
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 .input-wrapper textarea {
@@ -2015,24 +2034,15 @@ section {
     min-height: 120px;
 }
 
-.input-line {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--main-color), var(--accent-color));
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.input-wrapper:focus-within .input-line {
-    transform: scaleX(1);
+.input-wrapper input::placeholder,
+.input-wrapper textarea::placeholder {
+    color: var(--text-muted);
 }
 
 .input-wrapper input:focus,
 .input-wrapper textarea:focus {
-    border-bottom-color: var(--main-color);
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 4px rgba(232, 180, 184, 0.1);
 }
 
 .full-width {
@@ -2045,6 +2055,110 @@ section {
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    margin-top: 1rem;
+    padding: 1.6rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--main-color), var(--accent-color));
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(232, 180, 184, 0.3);
+}
+
+.magazine-btn.full-width:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(232, 180, 184, 0.4);
+}
+
+.magazine-btn.full-width i {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+}
+
+.magazine-btn.full-width:hover i {
+    transform: translateX(5px);
+}
+
+/* Contact responsive */
+@media (max-width: 1024px) {
+    .contact-magazine-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .contact-info {
+        order: 1;
+    }
+    
+    .contact-form {
+        order: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-magazine-grid {
+        gap: 3rem;
+    }
+    
+    .contact-intro h3 {
+        font-size: 2.4rem;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+    }
+    
+    .contact-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+    }
+    
+    .contact-form {
+        padding: 2.5rem;
+        border-radius: 20px;
+    }
+    
+    .form-group {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    
+    .form-header h3 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-intro h3 {
+        font-size: 2rem;
+    }
+    
+    .contact-text h4 {
+        font-size: 1.4rem;
+    }
+    
+    .contact-text p {
+        font-size: 1.2rem;
+    }
+    
+    .contact-form {
+        padding: 2rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 1.2rem 1rem;
+        font-size: 1.4rem;
+    }
+    
+    .magazine-btn.full-width {
+        padding: 1.4rem;
+        font-size: 1.5rem;
+    }
 }
 
 /* FOOTER MAGAZINE STYLE */
