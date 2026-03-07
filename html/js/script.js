@@ -170,63 +170,100 @@ function initPageTransitions() {
     }
 }
 
-// Elegant Minimalist Cursor - Visible on all pages
+// Curseur Luxe Premium - Multi-couches avec effets avancés
 function initCustomCursor() {
     // Only on non-touch devices
     if (window.matchMedia('(pointer: coarse)').matches) return;
     
-    // Create single cursor element
+    // Create main cursor element
     const cursor = document.createElement('div');
-    cursor.className = 'cursor-elegant visible';
+    cursor.className = 'cursor-luxe';
     document.body.appendChild(cursor);
+    
+    // Create trail particles array
+    const trails = [];
+    const trailCount = 5;
+    
+    for (let i = 0; i < trailCount; i++) {
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        trail.style.width = (8 - i) + 'px';
+        trail.style.height = (8 - i) + 'px';
+        document.body.appendChild(trail);
+        trails.push({
+            element: trail,
+            x: 0,
+            y: 0,
+            delay: i * 2
+        });
+    }
     
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
     let rafId = null;
     let isMoving = false;
     let mouseTimeout = null;
+    let frameCount = 0;
     
-    // Smooth follow animation
+    // Smooth follow animation with trails
     function animate() {
-        // Smooth interpolation for elegant movement
-        cursorX += (mouseX - cursorX) * 0.12;
-        cursorY += (mouseY - cursorY) * 0.12;
+        frameCount++;
+        
+        // Smooth interpolation for main cursor
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
         
         cursor.style.left = cursorX + 'px';
         cursor.style.top = cursorY + 'px';
         
+        // Update trails with staggered delay
+        trails.forEach((trail, index) => {
+            const delay = (index + 1) * 3;
+            trail.x += (cursorX - trail.x) * (0.1 - index * 0.015);
+            trail.y += (cursorY - trail.y) * (0.1 - index * 0.015);
+            
+            trail.element.style.left = trail.x + 'px';
+            trail.element.style.top = trail.y + 'px';
+            
+            // Fade trails based on distance from cursor
+            const distance = Math.sqrt(
+                Math.pow(cursorX - trail.x, 2) + 
+                Math.pow(cursorY - trail.y, 2)
+            );
+            const opacity = Math.max(0, 0.4 - distance * 0.005);
+            trail.element.style.opacity = isMoving ? opacity : 0;
+        });
+        
         rafId = requestAnimationFrame(animate);
     }
     
-    // Start animation immediately
-    animate();
+    // Start animation
+    setTimeout(() => {
+        cursor.classList.add('visible');
+        animate();
+    }, 100);
     
     // Track mouse movement on entire document
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        // Show cursor when mouse moves
         if (!isMoving) {
             isMoving = true;
-            cursor.classList.add('visible');
         }
         
-        // Clear existing timeout
         clearTimeout(mouseTimeout);
-        
-        // Hide cursor after inactivity (optional - keeps page clean)
         mouseTimeout = setTimeout(() => {
             isMoving = false;
-        }, 3000);
+        }, 100);
     });
     
-    // Hover effects on all interactive elements
+    // Hover effects on interactive elements
     const interactiveElements = document.querySelectorAll(
         'a, button, .magazine-btn, .gradient-btn, .service-box, .project-card, ' +
-        '.contact-item, .input-wrapper input, .input-wrapper textarea, ' +
-        '.social-link, .info-box, .competency-card, .service-magazine-card, ' +
-        '.project-magazine-card, .theme-toggle, #menu-icon'
+        '.contact-item, input, textarea, .social-link, .info-box, ' +
+        '.competency-card, .service-magazine-card, .project-magazine-card, ' +
+        '.theme-toggle, #menu-icon, .footer-link, .project-link'
     );
     
     interactiveElements.forEach(el => {
@@ -238,7 +275,20 @@ function initCustomCursor() {
         });
     });
     
-    // Click effects on entire document
+    // Text hover detection
+    const textElements = document.querySelectorAll('p, h1, h2, h3, h4, span');
+    textElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            if (!el.closest('a, button')) {
+                cursor.classList.add('text-hover');
+            }
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('text-hover');
+        });
+    });
+    
+    // Click effects
     document.addEventListener('mousedown', () => {
         cursor.classList.add('click');
     });
@@ -247,12 +297,13 @@ function initCustomCursor() {
         cursor.classList.remove('click');
     });
     
-    // Hide cursor when leaving window
+    // Hide/show on window leave/enter
     document.addEventListener('mouseleave', () => {
-        cursor.classList.remove('visible');
+        cursor.style.opacity = '0';
+        trails.forEach(t => t.element.style.opacity = '0');
     });
     
     document.addEventListener('mouseenter', () => {
-        cursor.classList.add('visible');
+        cursor.style.opacity = '1';
     });
 }
