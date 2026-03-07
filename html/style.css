@@ -3272,22 +3272,18 @@ body.transitioning {
 }
 
 /* Light mode contact form adjustments */
-:root.light-mode .contact-form-wrapper {
+:root.light-mode .contact-form {
     background: var(--card-bg);
 }
 
-:root.light-mode .contact-card {
-    background: var(--card-bg);
-}
-
-:root.light-mode .input-group input,
-:root.light-mode .input-group textarea {
+:root.light-mode .input-wrapper input,
+:root.light-mode .input-wrapper textarea {
     background: var(--second-bg-color);
     border-color: var(--border-color);
 }
 
-:root.light-mode .input-group input:focus,
-:root.light-mode .input-group textarea:focus {
+:root.light-mode .input-wrapper input:focus,
+:root.light-mode .input-wrapper textarea:focus {
     border-color: var(--main-color);
-    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15), 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15);
 }
