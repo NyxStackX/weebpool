@@ -92,6 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Page Transition Functionality
     initPageTransitions();
+    
+    // Initialize elegant custom cursor
+    initCustomCursor();
 });
 
 // Page Transition System
@@ -165,4 +168,91 @@ function initPageTransitions() {
             transitionOverlay.classList.remove('slide-down', 'active');
         }, 600);
     }
+}
+
+// Elegant Minimalist Cursor - Visible on all pages
+function initCustomCursor() {
+    // Only on non-touch devices
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    
+    // Create single cursor element
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-elegant visible';
+    document.body.appendChild(cursor);
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let rafId = null;
+    let isMoving = false;
+    let mouseTimeout = null;
+    
+    // Smooth follow animation
+    function animate() {
+        // Smooth interpolation for elegant movement
+        cursorX += (mouseX - cursorX) * 0.12;
+        cursorY += (mouseY - cursorY) * 0.12;
+        
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        rafId = requestAnimationFrame(animate);
+    }
+    
+    // Start animation immediately
+    animate();
+    
+    // Track mouse movement on entire document
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Show cursor when mouse moves
+        if (!isMoving) {
+            isMoving = true;
+            cursor.classList.add('visible');
+        }
+        
+        // Clear existing timeout
+        clearTimeout(mouseTimeout);
+        
+        // Hide cursor after inactivity (optional - keeps page clean)
+        mouseTimeout = setTimeout(() => {
+            isMoving = false;
+        }, 3000);
+    });
+    
+    // Hover effects on all interactive elements
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .magazine-btn, .gradient-btn, .service-box, .project-card, ' +
+        '.contact-item, .input-wrapper input, .input-wrapper textarea, ' +
+        '.social-link, .info-box, .competency-card, .service-magazine-card, ' +
+        '.project-magazine-card, .theme-toggle, #menu-icon'
+    );
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+        });
+    });
+    
+    // Click effects on entire document
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('click');
+    });
+    
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('click');
+    });
+    
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.classList.remove('visible');
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        cursor.classList.add('visible');
+    });
 }

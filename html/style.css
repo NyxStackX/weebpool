@@ -1897,6 +1897,77 @@ section {
     grid-template-columns: 1fr 1.2fr;
     gap: 6rem;
     align-items: start;
+    position: relative;
+}
+
+/* Effet spotlight subtil qui suit la souris */
+.contact-magazine-grid::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(232, 180, 184, 0.08) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+}
+
+.contact-magazine-grid:hover::before {
+    opacity: 1;
+}
+
+/* CURSEUR ÉLÉGANT - Visible sur toutes les pages */
+body {
+    cursor: none;
+}
+
+.cursor-elegant {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--main-color);
+    background: rgba(232, 180, 184, 0.05);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                width 0.3s ease,
+                height 0.3s ease,
+                background 0.3s ease,
+                border-color 0.3s ease;
+    opacity: 0;
+}
+
+.cursor-elegant.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* État hover - expansion subtile */
+.cursor-elegant.hover {
+    width: 56px;
+    height: 56px;
+    background: rgba(232, 180, 184, 0.12);
+    border-color: var(--accent-color);
+}
+
+/* État click - réduction légère */
+.cursor-elegant.click {
+    transform: translate(-50%, -50%) scale(0.85);
+    background: rgba(212, 165, 116, 0.2);
+}
+
+/* Restore default cursor on touch devices */
+@media (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
 }
 
 .contact-info {
@@ -1934,12 +2005,36 @@ section {
     border: 1px solid var(--border-color);
     border-radius: 16px;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(232, 180, 184, 0.15), rgba(212, 165, 116, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.contact-item:hover::before {
+    opacity: 1;
 }
 
 .contact-item:hover {
     border-color: var(--main-color);
-    transform: translateX(8px);
-    box-shadow: 0 8px 25px rgba(232, 180, 184, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(232, 180, 184, 0.2);
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(232, 180, 184, 0.4);
 }
 
 .contact-icon {
@@ -1954,6 +2049,9 @@ section {
     color: white;
     flex-shrink: 0;
     box-shadow: 0 4px 15px rgba(232, 180, 184, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .contact-text h4 {
@@ -2015,6 +2113,10 @@ section {
     position: relative;
 }
 
+.input-wrapper {
+    position: relative;
+}
+
 .input-wrapper input,
 .input-wrapper textarea {
     width: 100%;
@@ -2039,10 +2141,15 @@ section {
     color: var(--text-muted);
 }
 
+.input-wrapper input:hover,
+.input-wrapper textarea:hover {
+    border-color: rgba(232, 180, 184, 0.5);
+}
+
 .input-wrapper input:focus,
 .input-wrapper textarea:focus {
     border-color: var(--main-color);
-    box-shadow: 0 0 0 4px rgba(232, 180, 184, 0.1);
+    box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.1);
 }
 
 .full-width {
@@ -2066,6 +2173,23 @@ section {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 8px 25px rgba(232, 180, 184, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.magazine-btn.full-width::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.magazine-btn.full-width:hover::before {
+    left: 100%;
 }
 
 .magazine-btn.full-width:hover {
@@ -2079,7 +2203,7 @@ section {
 }
 
 .magazine-btn.full-width:hover i {
-    transform: translateX(5px);
+    transform: translateX(4px);
 }
 
 /* Contact responsive */
