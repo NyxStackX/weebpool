@@ -195,21 +195,17 @@ function initCustomCursor() {
         trails.push({
             element: trail,
             x: 0,
-            y: 0,
-            delay: i * 2
+            y: 0
         });
     }
     
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
-    let rafId = null;
     let isMoving = false;
     let mouseTimeout = null;
-    let frameCount = 0;
     
     // Smooth follow animation with trails
     function animate() {
-        frameCount++;
         
         // Smooth interpolation for main cursor
         cursorX += (mouseX - cursorX) * 0.15;
@@ -220,7 +216,6 @@ function initCustomCursor() {
         
         // Update trails with staggered delay
         trails.forEach((trail, index) => {
-            const delay = (index + 1) * 3;
             trail.x += (cursorX - trail.x) * (0.1 - index * 0.015);
             trail.y += (cursorY - trail.y) * (0.1 - index * 0.015);
             
@@ -236,7 +231,7 @@ function initCustomCursor() {
             trail.element.style.opacity = isMoving ? opacity : 0;
         });
         
-        rafId = requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
     }
     
     // Start animation
