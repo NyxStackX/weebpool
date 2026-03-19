@@ -59,11 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close menu when clicking on a nav link
     const navLinks = document.querySelectorAll('.navbar a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navbar.classList.remove('active');
+    if (navbar) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navbar.classList.remove('active');
+            });
         });
-    });
+    }
 
     // Back to top functionality
     const backToTopBtn = document.querySelector('.back-to-top');

@@ -948,7 +948,7 @@ section {
     .magazine-hero {
         grid-template-columns: 1fr;
         gap: 3rem;
-        texto-align: center;
+        text-align: center;
     }
 
     .magazine-title {
