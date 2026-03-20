@@ -65,6 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 navbar.classList.remove('active');
             });
         });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const clickedInsideMenu = navbar.contains(e.target);
+            const clickedMenuIcon = menuIcon && menuIcon.contains(e.target);
+
+            if (!clickedInsideMenu && !clickedMenuIcon) {
+                navbar.classList.remove('active');
+            }
+        });
     }
 
     // Back to top functionality
@@ -92,12 +102,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Reliable active nav link based on current page
+    setActiveNavLink();
+
     // Page Transition Functionality
     initPageTransitions();
     
     // Initialize elegant custom cursor
     initCustomCursor();
 });
+
+// Keep active nav link in sync with current page
+function setActiveNavLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar a');
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+}
 
 // Page Transition System
 function initPageTransitions() {
