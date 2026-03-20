@@ -3474,7 +3474,7 @@ body, a, button, input, textarea, .magazine-btn, .gradient-btn,
 /* RESPONSIVE COMPETENCIES */
 @media (max-width: 1400px) {
     .competency-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
