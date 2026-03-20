@@ -1,0 +1,3 @@
+- [ ] Refonte complète de `html/index.html` en hero éditorial asymétrique (hors du commun)
+- [ ] Refonte ciblée de `html/style.css` pour nouveau système visuel (soft glass + velvet glow + responsive)
+- [ ] Vérification finale visuelle et cohérence UX de la nouvelle homepage

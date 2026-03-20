@@ -390,34 +390,41 @@ section {
     max-width: 500px;
 }
 
-.magazine-stats {
-    display: flex;
-    gap: 4rem;
-    margin-bottom: 4rem;
+.signature-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.2rem;
+    margin: 2.2rem 0 3.2rem;
 }
 
-.stat {
-    text-align: center;
+.highlight-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 1.4rem;
+    padding: 1.4rem 1.2rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.stat-number {
+.highlight-pill:hover {
+    transform: translateY(-4px);
+    border-color: var(--main-color);
+    box-shadow: 0 12px 24px rgba(232, 180, 184, 0.15);
+}
+
+.highlight-title {
     display: block;
-    font-size: 3.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, var(--main-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
 }
 
-.stat-label {
-    font-size: 1.4rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 0.5rem;
+.highlight-sub {
     display: block;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
 }
 
 .magazine-cta {
@@ -451,13 +458,13 @@ section {
 
 .magazine-btn.secondary {
     background: transparent;
-    color: var(--text-color);
+    color: #ffffff;
     border: 2px solid var(--main-color);
 }
 
 .magazine-btn.secondary:hover {
     background: var(--main-color);
-    color: black;
+    color: #ffffff;
     transform: translateY(-3px);
 }
 
@@ -858,8 +865,14 @@ section {
         font-size: 4rem;
     }
 
-    .magazine-stats {
-        justify-content: center;
+    .signature-highlights {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .highlight-pill {
+        width: 100%;
+        max-width: 520px;
     }
 
     .magazine-cta {
@@ -964,17 +977,21 @@ section {
         font-size: 1.4rem;
     }
 
-    .magazine-stats {
-        gap: 2rem;
-        justify-content: center;
+    .signature-highlights {
+        gap: 0.9rem;
     }
 
-    .stat-number {
-        font-size: 2.5rem;
+    .highlight-pill {
+        text-align: left;
+        padding: 1.2rem 1rem;
     }
 
-    .stat-label {
-        font-size: 1.1rem;
+    .highlight-title {
+        font-size: 1.4rem;
+    }
+
+    .highlight-sub {
+        font-size: 1.15rem;
     }
 
     .magazine-cta {
