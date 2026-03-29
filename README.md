@@ -15,3 +15,4 @@ html/assets/*.pdf
 Cela permet d’éviter le suivi des PDFs dans `html/assets/` tout en gardant le reste du projet versionné.
 
 > Note : des fichiers peuvent encore apparaître sur GitHub dans l’historique des anciens commits, même s’ils sont maintenant ignorés pour les prochains commits.
+
